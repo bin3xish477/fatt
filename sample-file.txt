@@ -1,0 +1,4 @@
+http://google.com
+arn:aws:iam::123456789012:user/Development/product_1234/*
+S-1-5-21-1180699209-877415012-3182924384-1004
+https://github.com/binexisHATT/fatt
