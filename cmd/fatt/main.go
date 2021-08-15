@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
+	"log"
 	"os"
 	"regexp"
 
@@ -47,14 +48,21 @@ func search(queue <-chan string, finished chan bool) {
 			continue
 		} else {
 			for patternName, pattern := range strings.Patterns {
-				match, _ := regexp.MatchString(pattern, line)
+				re := regexp.MustCompile(pattern)
+				match := re.MatchString(line)
 				if match {
-					fmt.Println(patternName, match, line)
+					log.Println(patternName, match, line)
 				}
 			}
 		}
 	}
 	finished <- true
+}
+
+// init runs before any other code
+func init() {
+	log.SetPrefix(fmt.Sprintf("%sfatt%s: ", red, end))
+	log.SetFlags(0)
 }
 
 func main() {
