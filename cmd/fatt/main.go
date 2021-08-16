@@ -4,8 +4,10 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
+	"io"
 	"log"
 	"os"
+	"time"
 
 	"github.com/alexflint/go-arg"
 	"github.com/binexisHATT/fatt/helpers"
@@ -26,18 +28,18 @@ const (
 )
 
 var (
-	fileData string
-	noColor  bool
+	fileData          string
+	noColor           bool
+	totalStringsFound int
 
 	// Errors
-	FileError = errors.New(fmt.Sprintf("%sFATT%s: unable to open file", red, end))
+	FileError = errors.New("unable to open file")
 )
 
 func readFile(file string, queue chan<- string) {
 	f, err := os.Open(file)
 	if err != nil {
-		fmt.Println(FileError)
-		os.Exit(1)
+		log.Fatalln(FileError)
 	}
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
@@ -55,13 +57,15 @@ func search(queue <-chan string, finished chan bool) {
 				re := regexp2.MustCompile(pattern, 0)
 				matches := helpers.FindAllString(re, line)
 				for _, match := range matches {
+					totalStringsFound += 1
 					if noColor {
 						log.Println(
 							fmt.Sprintf("%s:%s", patternName, match),
 						)
 					} else {
 						log.Println(
-							fmt.Sprintf("%s%s%s%s:%s", green, underL, patternName, end, match),
+							//fmt.Sprintf("%s%s%s%s:%s", green, underL, patternName, end, match),
+							fmt.Sprintf("%s%s%s%s:%s%s%s", underL, green, patternName, end, yellow, match, end),
 						)
 					}
 				}
@@ -72,7 +76,7 @@ func search(queue <-chan string, finished chan bool) {
 }
 
 func main() {
-
+	start := time.Now()
 	c := models.Args{}
 	arg.MustParse(&c)
 
@@ -81,6 +85,17 @@ func main() {
 
 	if c.NoColor {
 		noColor = true
+	}
+
+	if c.OutFile != "" {
+		logFile, err := os.OpenFile(c.OutFile, os.O_CREATE|os.O_RDWR, 0666)
+		if err != nil {
+			log.Fatalln(fmt.Sprintf("could not create file -> %s", c.OutFile))
+		}
+		mw := io.MultiWriter(os.Stdout, logFile)
+		log.SetOutput(mw)
+	} else {
+		log.SetOutput(os.Stdout)
 	}
 
 	if noColor {
@@ -104,4 +119,8 @@ func main() {
 	}
 
 	close(finished)
+
+	fmt.Println(
+		fmt.Sprintf("\nTotal Strings Found: %d || Elapsed Time: %s", totalStringsFound, time.Since(start)),
+	)
 }
