@@ -33,7 +33,7 @@ var (
 	totalStringsFound int
 
 	// Errors
-	FileError = errors.New("unable to open file")
+	FileError = errors.New(" unable to open file")
 )
 
 func readFile(file string, queue chan<- string) {
