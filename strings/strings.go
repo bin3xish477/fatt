@@ -34,8 +34,6 @@ var Patterns = map[string]string{
 	`Password`:             `(pass(word|phrase)?|secret): \S+`,
 	`UserName`:             `(user( ?name)?|login): \S+`,
 	`Guid`:                 `[0-9a-fA-F]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12}`,
-	`Isbn13`:               `(?:[\d]-?){12}[\dxX]`,
-	`Isbn10`:               `(?:[\d]-?){9}[\dxX]`,
 	`BtcAddress`:           `[13][a-km-zA-HJ-NP-Z1-9]{25,34}`,
 	`CreditCard`:           `(?:(?:(?:\d{4}[- ]?){3}\d{4}|\d{15,16}))`,
 	`McCreditCard`:         `5[1-5]\d{2}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}`,
