@@ -121,6 +121,6 @@ func main() {
 	close(finished)
 
 	fmt.Println(
-		fmt.Sprintf("\nTotal Strings Found: %d || Elapsed Time: %s", totalStringsFound, time.Since(start)),
+		fmt.Sprintf("\nTotal Strings Found: %d\nElapsed Time: %s", totalStringsFound, time.Since(start)),
 	)
 }

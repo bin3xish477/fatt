@@ -80,6 +80,12 @@ AIDAJQABLZS4A3QDU576Q
 mailto:no-one@snai1mai1.com
 v0.1.5 v1.1.1
 v3.4.4.9034
-NV4SA3TBNVSSA2LTEBQWYZLYBI======
---...-.-.....-.---.-.--...-.-...
 /etc/passwd
+f3ef69b6-9968-4f92-a506-b2857c6b1a27
+https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+AKIAIOSFODNN7EXAMPLE
+HKEY_LOCAL_mACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\new
+HKEY_LOCAL_MACHINE\SYSTEM\Setup
+c:\Users\Administrators\Desktop\root.txt
+D:\Users\Administrators\Documents\logs.txt
