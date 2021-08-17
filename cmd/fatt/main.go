@@ -5,7 +5,9 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
 	"time"
 
@@ -17,14 +19,13 @@ import (
 )
 
 const (
-	red     = "\u001b[31m"
-	green   = "\u001b[32m"
-	blue    = "\u001b[34m"
-	yellow  = "\u001b[33m"
-	megenta = "\u001b[33m"
-	end     = "\u001b[0m"
-	bold    = "\u001b[1m"
-	underL  = "\u001b[4m"
+	red    = "\u001b[31m"
+	green  = "\u001b[32m"
+	blue   = "\u001b[34m"
+	yellow = "\u001b[33m"
+	end    = "\u001b[0m"
+	bold   = "\u001b[1m"
+	underL = "\u001b[4m"
 )
 
 var (
@@ -33,8 +34,39 @@ var (
 	totalStringsFound int
 
 	// Errors
-	FileError = errors.New(" unable to open file")
+	FileError    = errors.New(" unable to open file")
+	HTTPGetError = errors.New(" unable to make GET requests to specified url")
 )
+
+func search(data string) {
+	for patternName, pattern := range strings.Patterns {
+		re := regexp2.MustCompile(pattern, 0)
+		matches := helpers.FindAllString(re, data)
+		for _, match := range matches {
+			totalStringsFound += 1
+			if noColor {
+				log.Println(
+					fmt.Sprintf("%s:%s", patternName, match),
+				)
+			} else {
+				log.Println(
+					fmt.Sprintf("%s%s%s%s:%s%s%s", underL, green, patternName, end, yellow, match, end),
+				)
+			}
+		}
+	}
+}
+
+func scanUrl(url string) {
+	resp, err := http.Get(url)
+	if err != nil {
+		log.Fatalln(HTTPGetError)
+	}
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+	}
+	search(string(body))
+}
 
 func readFile(file string, queue chan<- string) {
 	f, err := os.Open(file)
@@ -48,28 +80,12 @@ func readFile(file string, queue chan<- string) {
 	close(queue)
 }
 
-func search(queue <-chan string, finished chan bool) {
+func run(queue <-chan string, finished chan bool) {
 	for line := range queue {
 		if line == "" {
 			continue
 		} else {
-			for patternName, pattern := range strings.Patterns {
-				re := regexp2.MustCompile(pattern, 0)
-				matches := helpers.FindAllString(re, line)
-				for _, match := range matches {
-					totalStringsFound += 1
-					if noColor {
-						log.Println(
-							fmt.Sprintf("%s:%s", patternName, match),
-						)
-					} else {
-						log.Println(
-							//fmt.Sprintf("%s%s%s%s:%s", green, underL, patternName, end, match),
-							fmt.Sprintf("%s%s%s%s:%s%s%s", underL, green, patternName, end, yellow, match, end),
-						)
-					}
-				}
-			}
+			search(line)
 		}
 	}
 	finished <- true
@@ -106,12 +122,17 @@ func main() {
 		log.SetFlags(0)
 	}
 
+	if c.Url != "" {
+		scanUrl(c.Url)
+		return
+	}
+
 	if c.File != "" {
 		go readFile(c.File, workQueue)
 	}
 
 	for i := 0; i < c.Workers; i++ {
-		go search(workQueue, finished)
+		go run(workQueue, finished)
 	}
 
 	for i := 0; i < c.Workers; i++ {
