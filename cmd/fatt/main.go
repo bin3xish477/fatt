@@ -34,9 +34,9 @@ var (
 	totalStringsFound int
 
 	// Errors
-	FileError      = errors.New(" unable to open file")
-	HTTPGetError   = errors.New(" unable to make GET requests to specified url")
-	ReadStdInError = errors.New(" failed to read input from stdin")
+	FileError      = errors.New("unable to open file")
+	HTTPGetError   = errors.New("unable to make GET requests to specified url")
+	ReadStdInError = errors.New("failed to read input from stdin")
 )
 
 func search(data string) {
@@ -117,10 +117,10 @@ func main() {
 	}
 
 	if noColor {
-		log.SetPrefix("fatt:")
+		log.SetPrefix("fatt: ")
 		log.SetFlags(0)
 	} else {
-		log.SetPrefix(fmt.Sprintf("%s%sfatt%s:", red, bold, end))
+		log.SetPrefix(fmt.Sprintf("%s%sfatt%s: ", red, bold, end))
 		log.SetFlags(0)
 	}
 
@@ -132,17 +132,22 @@ func main() {
 	if c.File != "" {
 		go readFile(c.File, workQueue)
 	} else {
-		// scanning from stdin
-		go func() {
-			scanner := bufio.NewScanner(os.Stdin)
-			for scanner.Scan() {
-				workQueue <- scanner.Text()
-			}
-			if err := scanner.Err(); err != nil {
-				log.Fatalln(ReadStdInError)
-			}
-			close(workQueue)
-		}()
+		stat, _ := os.Stdin.Stat()
+		if stat.Mode()&os.ModeCharDevice == 0 {
+			// scanning from stdin
+			go func() {
+				scanner := bufio.NewScanner(os.Stdin)
+				for scanner.Scan() {
+					workQueue <- scanner.Text()
+				}
+				if err := scanner.Err(); err != nil {
+					log.Fatalln(ReadStdInError)
+				}
+				close(workQueue)
+			}()
+		} else {
+			log.Fatalln("--file or data from stdin must be specified")
+		}
 	}
 
 	for i := 0; i < c.Workers; i++ {
