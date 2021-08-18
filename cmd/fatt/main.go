@@ -14,7 +14,7 @@ import (
 	"github.com/alexflint/go-arg"
 	"github.com/binexisHATT/fatt/helpers"
 	"github.com/binexisHATT/fatt/models"
-	"github.com/binexisHATT/fatt/strings"
+	"github.com/binexisHATT/fatt/patterns"
 	"github.com/dlclark/regexp2"
 )
 
@@ -34,12 +34,13 @@ var (
 	totalStringsFound int
 
 	// Errors
-	FileError    = errors.New(" unable to open file")
-	HTTPGetError = errors.New(" unable to make GET requests to specified url")
+	FileError      = errors.New(" unable to open file")
+	HTTPGetError   = errors.New(" unable to make GET requests to specified url")
+	ReadStdInError = errors.New(" failed to read input from stdin")
 )
 
 func search(data string) {
-	for patternName, pattern := range strings.Patterns {
+	for patternName, pattern := range patterns.Patterns {
 		re := regexp2.MustCompile(pattern, 0)
 		matches := helpers.FindAllString(re, data)
 		for _, match := range matches {
@@ -63,6 +64,7 @@ func scanUrl(url string) {
 		log.Fatalln(HTTPGetError)
 	}
 	body, err := ioutil.ReadAll(resp.Body)
+	defer resp.Body.Close()
 	if err != nil {
 	}
 	search(string(body))
@@ -129,6 +131,18 @@ func main() {
 
 	if c.File != "" {
 		go readFile(c.File, workQueue)
+	} else {
+		// scanning from stdin
+		go func() {
+			scanner := bufio.NewScanner(os.Stdin)
+			for scanner.Scan() {
+				workQueue <- scanner.Text()
+			}
+			if err := scanner.Err(); err != nil {
+				log.Fatalln(ReadStdInError)
+			}
+			close(workQueue)
+		}()
 	}
 
 	for i := 0; i < c.Workers; i++ {

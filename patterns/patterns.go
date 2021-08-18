@@ -1,4 +1,4 @@
-package strings
+package patterns
 
 var Patterns = map[string]string{
 	`HttpUrl`:             `\bhttps?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)\b$`,
@@ -58,5 +58,4 @@ var Patterns = map[string]string{
 	`AuthorizationBearer`: `bearer [a-zA-Z0-9_\\-\\.=]+`,
 	`GenericApiKey`:       `[a|A][p|P][i|I][_]?[k|K][e|E][y|Y].*['|\"][0-9a-zA-Z]{32,45}['|\"]`,
 	`WindowsRegistryKey`:  `(?i)^(HKEY_LOCAL_MACHINE|HKLM)([a-zA-Z0-9\s_@-\^!#.:/$%&+={}\[\]*])+$`,
-	`Http`:                `http`,
 }
