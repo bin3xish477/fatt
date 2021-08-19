@@ -67,22 +67,23 @@ fatt-linux-amd64.tar.gz: OK
 ### Change Log
 ```
 fatt v1.1.0
+---------------------------------------------------------------------------------------
 Patterns added:
 	- S3AccessLogEntry: matches AWS S3 log entry
 	- ApacheLogEntry: matches Apache log entry
 	- WindowsIISEntry: matches Windows IIS log entry
 	- SyslogEntryRfc3164: matches syslog log entry for RFC3164
 	- SyslogEntryRfc5424: matches syslog log entry for RFC5425
-  - NginxLogEntry: matches an Nginx log entry
-  - CVE: matches a CVE Id
-  - CVSSv2: matches a CVSS v2 vector
-  - CVSSv3: matches a CVSS v3 vector
-  - CVSSv3.1: matches a CVSS v3.1 vector
-  - PowerShellbase64Hidden: matches PowerShell base64 encoded and hidden command
-  - CmdExec: matches a cmd.exe non-interactive command-line
+  	- NginxLogEntry: matches an Nginx log entry
+  	- CVE: matches a CVE Id
+  	- CVSSv2: matches a CVSS v2 vector
+  	- CVSSv3: matches a CVSS v3 vector
+  	- CVSSv3.1: matches a CVSS v3.1 vector
+  	- PowerShellbase64Hidden: matches PowerShell base64 encoded and hidden command
+  	- CmdExec: matches a cmd.exe non-interactive command-line
 
 Help Menu Options:
-  - -q|--quiet: less verbose output
+  	- -q|--quiet: less verbose output
 
 Capabilities Added:
   ```
