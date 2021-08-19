@@ -1,40 +1,94 @@
 # fatt
-fatt (Find All The Things) is a tool written in Go that'll find common strings in any specified file or directory.
+fatt (Find All The Things) is a tool written in Go that'll find common strings in any specified file. If you have any regular expressions that aren't included, please make a pull request containing the regular expression and I'll include it into the tools.
 
-### Regex Patterns
+https://user-images.githubusercontent.com/44281620/130001712-ebf962c6-fd7a-4fe0-94b8-b7cb354ada21.mp4
+
+### Usage
+```bash
+cat /path/to/file.txt | fatt --workers 25 --outfile results.txt
+fatt --file /path/to/file.txt --workers 30 --outfile
+# fatt can also find strings in HTTP responses
+fatt --url http://someurl.com --outfile results.txt --nocolor
+```
+
+### Help Menu
+```
+Usage: main [--file FILE] [--url URL] [--outfile OUTFILE] [--workers WORKERS] [--nocolor]
+
+Options:
+  --file FILE, -f FILE   file to scan
+  --url URL, -u URL      url to scan
+  --outfile OUTFILE, -o OUTFILE
+                         name of directory to save results to
+  --workers WORKERS, -w WORKERS
+                         number of threads for scanning [default: 20]
+  --nocolor, -n          turn off color output
+  --help, -h             display this help and exit
+```
+
+### Current Regex Patterns Supported
 ```json
-{
-  "aliyun_oss_url": "[\\w-.]\\.oss.aliyuncs.com",
-  "azure_storage": "https?://[\\w-\.]\\.file.core.windows.net",
-  "access_key": "[Aa](ccess|CCESS)_?[Kk](ey|EY)|[Aa](ccess|CCESS)_?[sS](ecret|ECRET)|[Aa](ccess|CCESS)_?(id|ID|Id)",
-  "secret_key": "[Ss](ecret|ECRET)_?[Kk](ey|EY)",
-  "slack_token": "(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})",
-  "slack_webhook": "https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}",
-  "facebook_oauth": "[f|F][a|A][c|C][e|E][b|B][o|O][o|O][k|K].{0,30}['\"\\s][0-9a-f]{32}['\"\\s]",
-  "twitter_oauth": "[t|T][w|W][i|I][t|T][t|T][e|E][r|R].{0,30}['\"\\s][0-9a-zA-Z]{35,44}['\"\\s]",
-  "heroku_api": "[h|H][e|E][r|R][o|O][k|K][u|U].{0,30}[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}",
-  "mailgun_api": "key-[0-9a-zA-Z]{32}",
-  "mailchamp_api": "[0-9a-f]{32}-us[0-9]{1,2}",
-  "picatic_api": "sk_live_[0-9a-z]{32}",
-  "google_oauth_id": "[0-9(+-[0-9A-Za-z_]{32}.apps.qooqleusercontent.com",
-  "google_api": "AIza[0-9A-Za-z-_]{35}",
-  "google_captcha": "6L[0-9A-Za-z-_]{38}",
-  "google_oauth": "ya29\\.[0-9A-Za-z\\-_]+",
-  "amazon_aws_access_key_id": "AKIA[0-9A-Z]{16}",
-  "amazon_mws_auth_token": "amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
-  "amazonaws_url": "s3\\.amazonaws.com[/]+|[a-zA-Z0-9_-]*\\.s3\\.amazonaws.com",
-  "facebook_access_token": "EAACEdEose0cBA[0-9A-Za-z]+",
-  "mailgun_api_key": "key-[0-9a-zA-Z]{32}",
-  "twilio_api_key": "SK[0-9a-fA-F]{32}",
-  "twilio_account_sid": "AC[a-zA-Z0-9_\\-]{32}",
-  "twilio_app_sid": "AP[a-zA-Z0-9_\\-]{32}",
-  "paypal_braintree_access_token": "access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}",
-  "square_oauth_secret": "sq0csp-[ 0-9A-Za-z\\-_]{43}",
-  "square_access_token": "sqOatp-[0-9A-Za-z\\-_]{22}",
-  "stripe_standard_api": "sk_live_[0-9a-zA-Z]{24}",
-  "stripe_restricted_api": "rk_live_[0-9a-zA-Z]{24}",
-  "github_access_token": "[a-zA-Z0-9_-]*:[a-zA-Z0-9_\\-]+@github\\.com*",
-  "private_ssh_key": "-----BEGIN PRIVATE KEY-----[a-zA-Z0-9\\S]{100,}-----END PRIVATE KEY——",
-  "private_rsa_key": "-----BEGIN RSA PRIVATE KEY-----[a-zA-Z0-9\\S]{100,}-----END RSA PRIVATE KEY-----",
+package patterns
+
+var Patterns = map[string]string{
+	`HttpUrl`:             `\bhttps?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)\b$`,
+	`AwsArn`:              `\barn:([^:\n]*):([^:\n]*):([^:\n]*):([^:\n]*):(([^:\/\n]*)[:\/])?(.*)\b$`,
+	`AwsS3Bucket`:         `([a-z0-9.-]+\\.s3\\.amazonaws\\.com|//s3\\.amazonaws\\.com/[a-z0-9._-]+)`,
+	`AwsIamAccessId`:      `AKIA[0-9A-Z]{16}`,
+	`AwsSecretKey`:        `(?i)aws(.{0,20})?(?-i)['\"][0-9a-zA-Z\/+]{40}['\"]`,
+	`GitRepo`:             `\b(https?://)?github\.com(?:\/[^\s\/]+){2}\b$`,
+	`Date`:                `\b\d{2}[/-]\d{2}[/-]\d{2,4}\b$`,
+	`Jwt`:                 `\beyJ[A-Za-z0-9-_=]+\.eyJ[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*\b$`,
+	`UsAddress`:           `\b(\d+ [^,]+, [A-Z]{2} \d{5})\b$`,
+	`IpAddrV4`:            `\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}\b$`,
+	`IpAddrV6`:            `\b(?<![:.\w])(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}(?![:.\w])\b$`,
+	`MacAddress`:          `([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})`,
+	`Sid`:                 `\bS-\d-\d+-(\d+-){1,14}\d+\b$`,
+	`Md5`:                 `\b[a-f0-9]{32}\b$`,
+	`Sha256`:              `\b[A-Fa-f0-9]{64}\b$`,
+	`Sha512`:              `\b[A-Fa-f0-9]{128}\b$`,
+	`Name`:                `\b([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)\b$`,
+	`EmailAddr`:           `^\S+@\S+\.\S+$`,
+	`PhoneNumber`:         `^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$`,
+	`Ssn`:                 `^(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4}$`,
+	`SlackApiKey`:         `xox[baprs]-[0-9]{12}-[0-9]{12}-[0-9a-zA-Z]{24}`,
+	`SlackAccessToken`:    `T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}`,
+	`SlackWebHook`:        `https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}`,
+	`MailGunApiKey`:       `[0-9a-f]{32}-us[0-9]{1,2}`,
+	`MailChimpKey`:        `[0-9a-f]{32}-us[0-9]{1,2}`,
+	`GoogleApiKey`:        `AIza[0-9A-Za-z\\-_]{35}`,
+	`FacebookToken`:       `EAACEdEose0cBA[0-9A-Za-z]+`,
+	`Version`:             `\b(v(ersion)*\s*)([0-9]+)\.([0-9]+)\.([0-9]+)(?:\.([0-9]+))?\b$`,
+	`LinuxPath`:           `^(/[^/ ]*)+/?$`,
+	`WindowsPath`:         `^(?:[a-zA-Z]\:|\\\\[\w\.]+\\[\w.$]+)\\(?:[\w]+\\)*\w([\w.])+$`,
+	`TwilioApiKey`:        `^SK[0-9a-fA-F]{32}$`,
+	`Password`:            `(pass(word|phrase)?|secret): \S+`,
+	`UserName`:            `(user( ?name)?|login): \S+`,
+	`Guid`:                `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$`,
+	`BtcAddress`:          `[13][a-km-zA-HJ-NP-Z1-9]{25,34}`,
+	`CreditCard`:          `(?:(?:(?:\d{4}[- ]?){3}\d{4}|\d{15,16}))`,
+	`McCreditCard`:        `5[1-5]\d{2}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}`,
+	`VisaCreditCard`:      `4\d{3}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}`,
+	`Coordinates`:         `^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$`,
+	`SquareAccessToken`:   `sqOatp-[0-9A-Za-z\\-_]{22}`,
+	`SquareOauthSecret`:   `sq0csp-[ 0-9A-Za-z\\-_]{43}`,
+	`AzureSubscriptionId`: `^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$`,
+	`WapBssid`:            `([0-9A-F]{2}([:-]|$)){6}`,
+	`WindowsVersion`:      `(Windows (7|8(\.1)?|3(\.1|\.0)|10|ME|XP|Vista|95|98|2000|1\.0[1-4]|2\.(03|1[0|1])))$`,
+	`EnvironmentVariable`: `^([A-Z]+=\w+)$`,
+	`NetworkShare`:        `^(\\)(\\[\w\.-_]+){2,}(\\?)$`,
+	`GitHubSecret`:        `github.*['|\"][0-9a-zA-Z]{35,40}['|\"]`,
+	`HerokuKeys`:          `heroku.*[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}`,
+	`PayPalToken`:         `access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}`,
+	`AsymmetricKeyHeader`: `\\-\\-\\-\\-\\-BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?\\-\\-\\-\\-\\-`,
+	`AmsAuthToken`:        `amzn.mws.[0-9a-f]{8}-[0-9a-f]{4}-10-9a-f1{4}-[0-9a,]{4}-[0-9a-f]{12}`,
+	`PicaticApiKey`:       `sk_live_[0-9a-z]{32}`,
+	`TwitterAccessToken`:  `[1-9][ 0-9]+-[0-9a-zA-Z]{40}`,
+	`AuthorizationBasic`:  `basic [a-zA-Z0-9_\-\:\.=]+`,
+	`AuthorizationBearer`: `bearer [a-zA-Z0-9_\\-\\.=]+`,
+	`GenericApiKey`:       `[a|A][p|P][i|I][_]?[k|K][e|E][y|Y].*['|\"][0-9a-zA-Z]{32,45}['|\"]`,
+	`WindowsRegistryKey`:  `(?i)^(HKEY_LOCAL_MACHINE|HKLM)([a-zA-Z0-9\s_@-\^!#.:/$%&+={}\[\]*])+$`,
+	`VariableDeclaration`: `[\w_-]+\s?:?=\s?["'][\d\w\s]+["']`,
+	`Comment`:             `((/\*([^*]|(\*+[^*/]))*\*+/)|(//.*)|^#\s[\w\s]+\n)`,
 }
 ```
