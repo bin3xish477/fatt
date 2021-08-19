@@ -1,7 +1,7 @@
 # fatt
 fatt (Find All The Things) is a tool written in Go that'll find common strings in any specified file. If you have any regular expressions that aren't included, please make a pull request containing the regular expression and I'll include it into the tools.
 
-https://user-images.githubusercontent.com/44281620/130000818-ec6ec52a-7731-4a8e-a282-7715a36daaed.mp4
+![fatt-in-action](https://user-images.githubusercontent.com/44281620/130001416-3c8706d7-0efa-4894-a1bf-e3d9f6b2a258.gif)
 
 ### Usage
 ```bash
