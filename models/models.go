@@ -6,4 +6,5 @@ type Args struct {
 	OutFile string `help:"name of directory to save results to" arg:"-o,--outfile"`
 	Workers int    `help:"number of threads for scanning" default:"20" arg:"-w,--workers"`
 	NoColor bool   `help:"turn off color output" arg:"-n,--nocolor"`
+	Quiet   bool   `help:"make output less verbose" arg:"-q,--quiet"`
 }

@@ -20,9 +20,9 @@ import (
 )
 
 const (
-	red    = "\u001b[31m"
+	red    = "\u001b[91m"
 	green  = "\u001b[32m"
-	blue   = "\u001b[34m"
+	blue   = "\u001b[94m"
 	yellow = "\u001b[33m"
 	end    = "\u001b[0m"
 	bold   = "\u001b[1m"
@@ -33,6 +33,7 @@ var (
 	fileData          string
 	noColor           bool
 	totalStringsFound int
+	quiet             bool
 
 	// Errors
 	FileError      = errors.New("unable to open file")
@@ -47,13 +48,21 @@ func search(data string) {
 		for _, match := range matches {
 			totalStringsFound += 1
 			match := strings.TrimRight(match, "\n")
-			if noColor {
+			if noColor && quiet {
+				fmt.Println(
+					fmt.Sprintf("[%s]=%s", patternName, match),
+				)
+			} else if noColor {
 				log.Println(
-					fmt.Sprintf("%s:%s", patternName, match),
+					fmt.Sprintf("[%s]=%s", patternName, match),
+				)
+			} else if quiet {
+				fmt.Println(
+					fmt.Sprintf("[%s%s%s%s]=%s%s%s", underL, blue, patternName, end, yellow, match, end),
 				)
 			} else {
 				log.Println(
-					fmt.Sprintf("%s%s%s%s:%s%s%s", underL, green, patternName, end, yellow, match, end),
+					fmt.Sprintf("[%s%s%s%s]=%s%s%s", underL, blue, patternName, end, yellow, match, end),
 				)
 			}
 		}
@@ -114,6 +123,10 @@ func main() {
 		noColor = true
 	}
 
+	if c.Quiet {
+		quiet = true
+	}
+
 	if c.OutFile != "" {
 		logFile, err := os.OpenFile(c.OutFile, os.O_CREATE|os.O_RDWR, 0666)
 		if err != nil {
@@ -168,6 +181,10 @@ func main() {
 	}
 
 	close(finished)
+
+	if quiet {
+		return
+	}
 
 	numOfPatternsSearched := fmt.Sprintf("\u2022 Number Of Patterns Searched: %d", len(patterns.Patterns))
 	results := fmt.Sprintf("\u2022 Total Strings Found: %d", totalStringsFound)
