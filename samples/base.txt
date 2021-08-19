@@ -89,3 +89,13 @@ HKEY_LOCAL_mACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\new
 HKEY_LOCAL_MACHINE\SYSTEM\Setup
 c:\Users\Administrators\Desktop\root.txt
 D:\Users\Administrators\Documents\logs.txt
+name = "steve"
+Aro := "4"
+hi = 'bye'
+lolwot = "wait wot"
+val_one="hello world"
+# this is a Python/bash single-line comment
+/* this is a multi-line comment */
+// single line javascript comment
+111-66-7777
+423 W 55th St New York, NY 10019

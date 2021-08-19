@@ -58,4 +58,6 @@ var Patterns = map[string]string{
 	`AuthorizationBearer`: `bearer [a-zA-Z0-9_\\-\\.=]+`,
 	`GenericApiKey`:       `[a|A][p|P][i|I][_]?[k|K][e|E][y|Y].*['|\"][0-9a-zA-Z]{32,45}['|\"]`,
 	`WindowsRegistryKey`:  `(?i)^(HKEY_LOCAL_MACHINE|HKLM)([a-zA-Z0-9\s_@-\^!#.:/$%&+={}\[\]*])+$`,
+	`VariableDeclaration`: `[\w_-]+\s?:?=\s?["'][\d\w\s]+["']`,
+	`Comment`:             `((/\*([^*]|(\*+[^*/]))*\*+/)|(//.*)|^#\s[\w\s]+\n)`,
 }

@@ -75,6 +75,13 @@ func readFile(file string, queue chan<- string) {
 	if err != nil {
 		log.Fatalln(FileError)
 	}
+	fileStat, err := f.Stat()
+	if err != nil {
+		log.Fatalln("unable to determine if argument to `--file` is a file or directory")
+	}
+	if fileStat.IsDir() {
+		log.Fatalln("argument to `--file` must be a file and not a directory")
+	}
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		queue <- scanner.Text()
@@ -160,7 +167,8 @@ func main() {
 
 	close(finished)
 
-	fmt.Println(
-		fmt.Sprintf("\nTotal Strings Found: %d\nElapsed Time: %s", totalStringsFound, time.Since(start)),
-	)
+	numOfPatternsSearched := fmt.Sprintf("\u2022 Number Of Patterns Searched: %d", len(patterns.Patterns))
+	results := fmt.Sprintf("\u2022 Total Strings Found: %d", totalStringsFound)
+	elapsedTime := fmt.Sprintf("\u2022 Elapsed Time: %s", time.Since(start))
+	fmt.Printf("\n%s\n%s\n%s\n", numOfPatternsSearched, results, elapsedTime)
 }
