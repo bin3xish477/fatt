@@ -1,7 +1,7 @@
 # fatt
 fatt (Find All The Things) is a tool written in Go that'll find common strings in any specified file. If you have any regular expressions that aren't included, please make a pull request containing the regular expression and I'll include it into the tools.
 
-![fatt-in-action](https://user-images.githubusercontent.com/44281620/130001416-3c8706d7-0efa-4894-a1bf-e3d9f6b2a258.gif)
+https://user-images.githubusercontent.com/44281620/130001712-ebf962c6-fd7a-4fe0-94b8-b7cb354ada21.mp4
 
 ### Usage
 ```bash
@@ -9,6 +9,21 @@ cat /path/to/file.txt | fatt --workers 25 --outfile results.txt
 fatt --file /path/to/file.txt --workers 30 --outfile
 # fatt can also find strings in HTTP responses
 fatt --url http://someurl.com --outfile results.txt --nocolor
+```
+
+### Help Menu
+```
+Usage: main [--file FILE] [--url URL] [--outfile OUTFILE] [--workers WORKERS] [--nocolor]
+
+Options:
+  --file FILE, -f FILE   file to scan
+  --url URL, -u URL      url to scan
+  --outfile OUTFILE, -o OUTFILE
+                         name of directory to save results to
+  --workers WORKERS, -w WORKERS
+                         number of threads for scanning [default: 20]
+  --nocolor, -n          turn off color output
+  --help, -h             display this help and exit
 ```
 
 ### Current Regex Patterns Supported
@@ -76,19 +91,4 @@ var Patterns = map[string]string{
 	`VariableDeclaration`: `[\w_-]+\s?:?=\s?["'][\d\w\s]+["']`,
 	`Comment`:             `((/\*([^*]|(\*+[^*/]))*\*+/)|(//.*)|^#\s[\w\s]+\n)`,
 }
-```
-
-### Help Menu
-```
-Usage: main [--file FILE] [--url URL] [--outfile OUTFILE] [--workers WORKERS] [--nocolor]
-
-Options:
-  --file FILE, -f FILE   file to scan
-  --url URL, -u URL      url to scan
-  --outfile OUTFILE, -o OUTFILE
-                         name of directory to save results to
-  --workers WORKERS, -w WORKERS
-                         number of threads for scanning [default: 20]
-  --nocolor, -n          turn off color output
-  --help, -h             display this help and exit
 ```
