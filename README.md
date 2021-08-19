@@ -7,7 +7,6 @@ https://user-images.githubusercontent.com/44281620/130001712-ebf962c6-fd7a-4fe0-
 ```bash
 cat /path/to/file.txt | fatt --workers 25 --outfile results.txt
 fatt --file /path/to/file.txt --workers 30 --outfile
-# fatt can also find strings in HTTP responses
 fatt --url http://someurl.com --outfile results.txt --nocolor
 ```
 
