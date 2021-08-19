@@ -1,5 +1,5 @@
 # fatt
-fatt (Find All The Things) is a tool written in Go that'll find common strings in a specified file or HTTP response. If you have any regular expressions that aren't included, please make a pull request containing the regular expression and I'll include it into the tools.
+fatt (Find All The Things) is a tool written in Go that'll find common strings in a specified file or HTTP response. If you have any regular expressions that aren't included, please make a pull request containing the regular expression and I'll include it into the tools current collection.
 
 https://user-images.githubusercontent.com/44281620/130001712-ebf962c6-fd7a-4fe0-94b8-b7cb354ada21.mp4
 
@@ -78,12 +78,12 @@ Patterns added:
   	- CVE: matches a CVE Id
   	- CVSSv2: matches a CVSS v2 vector
   	- CVSSv3: matches a CVSS v3 vector
-  	- CVSSv3.1: matches a CVSS v3.1 vector
-  	- PowerShellbase64Hidden: matches PowerShell base64 encoded and hidden command
-  	- CmdExec: matches a cmd.exe non-interactive command-line
+	- CVSSv3.1: matches a CVSS v3.1 vector
+	- PowerShellbase64Hidden: matches PowerShell base64 encoded and hidden command
+	- CmdExec: matches a cmd.exe non-interactive command-line
 
 Help Menu Options:
-  	- -q|--quiet: less verbose output
+	- -q|--quiet: less verbose output
 
 Capabilities Added:
   ```
