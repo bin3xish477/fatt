@@ -26,6 +26,38 @@ Options:
   --help, -h             display this help and exit
 ```
 
+### Installation
+#### From Source (Go Must Be Installed)
+```
+git clone https://github.com/binexisHATT/fatt.git
+cd fatt
+go build -o fatt cmd/fatt/*
+```
+
+#### From Release
+```
+1. Go to fatt's release page: https://github.com/binexisHATT/fatt/releases
+2. Download the .tar.gz archive for the target OS/Architecture and the .sha256sum file for verification
+3. Run sha256sum --check to verify download hash
+4. Extract the archive with the tar command to obtain binary
+
+# Example for Linux (amd64):
+wget https://github.com/binexisHATT/fatt/releases/download/1.0.0/fatt-linux-amd64.tar.gz
+wget https://github.com/binexisHATT/fatt/releases/download/1.0.0/fatt-linux-amd64.tar.gz.sha256sum
+
+# Verify SHA256 Hash
+sha256sum --check fatt-linux-amd64.tar.gz.sha256sum
+# Output if hashes matched:
+fatt-linux-amd64.tar.gz: OK
+
+# Extract tar.gz Archive
+tar -xvzf fatt-linux-amd64.tar.gz
+# Install fatt to PATH
+sudo install ./fatt /usr/local/bin/fatt
+
+# OR sudo mv ./fatt /usr/local/bin/
+```
+
 ### Current Regex Patterns Supported
 ```json
 package patterns
