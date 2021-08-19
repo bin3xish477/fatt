@@ -14,9 +14,6 @@ darwin-release:
 	GOOS=darwin GOARCH=amd64 go build -o ./fatt ./cmd/fatt/*
 	tar -czvf fatt-darwin-amd64.tar.gz ./fatt ./README.md
 	sha256sum fatt-darwin-amd64.tar.gz > fatt-darwin-amd64.tar.gz.sha256sum
-	GOOS=darwin GOARCH=386 go build -o ./fatt ./cmd/fatt/*
-	tar -czvf fatt-darwin-386.tar.gz ./fatt ./README.md
-	sha256sum fatt-darwin-386.tar.gz > fatt-darwin-386.tar.gz.sha256sum
 
 linux:
 	GOOS=linux GOARCH=amd64 go build -o ./fatt ./cmd/fatt/*
