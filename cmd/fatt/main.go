@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/alexflint/go-arg"
@@ -45,6 +46,7 @@ func search(data string) {
 		matches := helpers.FindAllString(re, data)
 		for _, match := range matches {
 			totalStringsFound += 1
+			match := strings.TrimRight(match, "\n")
 			if noColor {
 				log.Println(
 					fmt.Sprintf("%s:%s", patternName, match),
