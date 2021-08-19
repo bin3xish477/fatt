@@ -26,11 +26,16 @@ Options:
 ```
 
 ### Installation
+#### With Go Installed (Go v1.17 or newer)
+```
+➤ go get -u -v github.com/binexisHATT/fatt/cmd/fatt
+➤ fatt --help
+```
 #### From Source (Go Must Be Installed)
 ```
-git clone https://github.com/binexisHATT/fatt.git
-cd fatt
-go build -o fatt cmd/fatt/*
+➤ git clone https://github.com/binexisHATT/fatt.git
+➤ cd fatt
+➤ go build -o fatt cmd/fatt/*
 ```
 
 #### From Release
@@ -41,20 +46,20 @@ go build -o fatt cmd/fatt/*
 4. Extract the archive with the tar command to obtain binary
 
 # Example for Linux (amd64):
-wget https://github.com/binexisHATT/fatt/releases/download/1.0.0/fatt-linux-amd64.tar.gz
-wget https://github.com/binexisHATT/fatt/releases/download/1.0.0/fatt-linux-amd64.tar.gz.sha256sum
+➤ wget https://github.com/binexisHATT/fatt/releases/download/1.0.0/fatt-linux-amd64.tar.gz
+➤ wget https://github.com/binexisHATT/fatt/releases/download/1.0.0/fatt-linux-amd64.tar.gz.sha256sum
 
 # Verify SHA256 Hash
-sha256sum --check fatt-linux-amd64.tar.gz.sha256sum
+➤ sha256sum --check fatt-linux-amd64.tar.gz.sha256sum
 # Output if hashes matched:
 fatt-linux-amd64.tar.gz: OK
 
 # Extract tar.gz Archive
-tar -xvzf fatt-linux-amd64.tar.gz
+➤ tar -xvzf fatt-linux-amd64.tar.gz
 # Install fatt to PATH
-sudo install ./fatt /usr/local/bin/fatt
-
-# OR sudo mv ./fatt /usr/local/bin/
+➤ sudo install ./fatt /usr/local/bin/fatt
+# OR
+➤ sudo mv ./fatt /usr/local/bin/
 ```
 
 ### Current Regex Patterns Supported
