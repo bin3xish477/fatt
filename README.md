@@ -84,6 +84,7 @@ Patterns added:
 
 Help Menu Options:
 	- -q|--quiet: less verbose output
+  - -l|--list: list all available patterns and count
 
 Capabilities Added:
   ```

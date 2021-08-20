@@ -30,7 +30,6 @@ const (
 )
 
 var (
-	fileData          string
 	noColor           bool
 	totalStringsFound int
 	quiet             bool
@@ -50,19 +49,19 @@ func search(data string) {
 			match := strings.TrimRight(match, "\n")
 			if noColor && quiet {
 				fmt.Println(
-					fmt.Sprintf("[%s]=%s", patternName, match),
+					fmt.Sprintf("[%s]%s", patternName, match),
 				)
 			} else if noColor {
 				log.Println(
-					fmt.Sprintf("[%s]=%s", patternName, match),
+					fmt.Sprintf("[%s]%s", patternName, match),
 				)
 			} else if quiet {
 				fmt.Println(
-					fmt.Sprintf("[%s%s%s%s]=%s%s%s", underL, blue, patternName, end, yellow, match, end),
+					fmt.Sprintf("[%s%s%s%s]%s%s%s", underL, blue, patternName, end, yellow, match, end),
 				)
 			} else {
 				log.Println(
-					fmt.Sprintf("[%s%s%s%s]=%s%s%s", underL, blue, patternName, end, yellow, match, end),
+					fmt.Sprintf("[%s%s%s%s]%s%s%s", underL, blue, patternName, end, yellow, match, end),
 				)
 			}
 		}
@@ -118,6 +117,11 @@ func main() {
 
 	workQueue := make(chan string)
 	finished := make(chan bool)
+
+	if c.ListPatterns {
+		helpers.ListPatterns()
+		return
+	}
 
 	if c.NoColor {
 		noColor = true
@@ -186,8 +190,7 @@ func main() {
 		return
 	}
 
-	numOfPatternsSearched := fmt.Sprintf("\u2022 Number Of Patterns Searched: %d", len(patterns.Patterns))
 	results := fmt.Sprintf("\u2022 Total Strings Found: %d", totalStringsFound)
 	elapsedTime := fmt.Sprintf("\u2022 Elapsed Time: %s", time.Since(start))
-	fmt.Printf("\n%s\n%s\n%s\n", numOfPatternsSearched, results, elapsedTime)
+	fmt.Printf("\n%s\n%s\n", results, elapsedTime)
 }
