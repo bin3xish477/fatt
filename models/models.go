@@ -7,5 +7,5 @@ type Args struct {
 	Workers      int    `help:"number of threads for scanning" default:"20" arg:"-w,--workers"`
 	NoColor      bool   `help:"turn off color output" arg:"-n,--nocolor"`
 	Quiet        bool   `help:"make output less verbose" arg:"-q,--quiet"`
-	ListPatterns bool   `help:"list all pattern names and their corresponding regular expression" arg:"-l,--list"`
+	ListPatterns bool   `help:"list all pattern names" arg:"-l,--list"`
 }

