@@ -57,7 +57,6 @@ var Patterns = map[string]string{
 	`GenericApiKey`:          `[a|A][p|P][i|I][_]?[k|K][e|E][y|Y].*['|\"][0-9a-zA-Z]{32,45}['|\"]`,
 	`WindowsRegistryKey`:     `(?i)^(HKEY_LOCAL_MACHINE|HKLM)([a-zA-Z0-9\s_@-\^!#.:/$%&+={}\[\]*])+$`,
 	`VariableDeclaration`:    `[\w_-]+\s?:?=\s?["'][\d\w\s]+["']`,
-	`Comment`:                `((/\*([^*]|(\*+[^*/]))*\*+/)|(//.*)|^#\s[\w\s]+\n)`,
 	`HTMLComment`:            `<!--(.*?)-->`,
 	`S3AccessLogEntry`:       `(\S+) (\S+) \[(.*?)\] (\S+) (\S+) (\S+) (\S+) (\S+) "([^"]+)" (\S+) (\S+) (\S+) (\S+) (\S+) (\S+) "([^"]+)" "([^"]+)"`,
 	`ApacheLogEntry`:         `^(\S+) (\S+) (\S+) \[([\w:/]+\s[+\-]\d{4})\] "(\S+)\s?(\S+)?\s?(\S+)?" (\d{3}|-) (\d+|-)\s?"?([^"]*)"?\s?"?([^"]*)?"?$`,
