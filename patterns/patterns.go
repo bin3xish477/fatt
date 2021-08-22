@@ -41,6 +41,7 @@ var Patterns = map[string]string{
 	`SquareAccessToken`:      `sqOatp-[0-9A-Za-z\\-_]{22}`,
 	`SquareOauthSecret`:      `sq0csp-[ 0-9A-Za-z\\-_]{43}`,
 	`AzureSubscriptionId`:    `^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$`,
+	`AzureStorageKey`:        `AccountKey=[a-zA-Z0-9+\/=]{88}`,
 	`WapBssid`:               `([0-9A-F]{2}([:-]|$)){6}`,
 	`WindowsVersion`:         `(Windows (7|8(\.1)?|3(\.1|\.0)|10|ME|XP|Vista|95|98|2000|1\.0[1-4]|2\.(03|1[0|1])))$`,
 	`EnvironmentVariable`:    `^([A-Z]+=\w+)$`,
@@ -73,4 +74,7 @@ var Patterns = map[string]string{
 	`Password`:               `((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,24})`,
 	`TwitterHandle`:          `@([A-Za-z0-9_]{1,15})$`,
 	`FacebookPageUrl`:        `(?:http:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)`,
+	`HTTPRequest`:            `GET\s+([^?\s]+)((?:[?&][^&\s]+)*)\s+(HTTP/.*)`,
+	`HostHeader`:             `Host: (.+)\r\n`,
+	`IbmCloudIamSecret`:      `([a-zA-Z0-9_\-]{44}(?![a-zA-Z0-9_\-]))`,
 }

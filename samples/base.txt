@@ -130,3 +130,5 @@ cmd.exe \c "echo 'Hello, world'"
 <!-- Hey, A Password in an HTML comment, Password: StrongPassword!1!1 -->
 http://www.facebook.com/my_page_id
 http://www.facebook.com/pages/Vanity-Url/45678
+GET /index.html?x=1&y=2 HTTP/1.1
+Host: google.com
