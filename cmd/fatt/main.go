@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -68,16 +67,21 @@ func search(data string) {
 	}
 }
 
-func scanUrl(url string) {
-	resp, err := http.Get(url)
+func scanUrl(url string, queue chan<- string) {
+	client := http.Client{
+		Timeout: time.Second * 5,
+	}
+	resp, err := client.Get(url)
 	if err != nil {
 		log.Fatalln(HTTPGetError)
 	}
-	body, err := ioutil.ReadAll(resp.Body)
 	defer resp.Body.Close()
-	if err != nil {
+
+	scanner := bufio.NewScanner(resp.Body)
+	for scanner.Scan() {
+		queue <- scanner.Text()
 	}
-	search(string(body))
+	close(queue)
 }
 
 func readFile(file string, queue chan<- string) {
@@ -115,9 +119,6 @@ func main() {
 	c := models.Args{}
 	arg.MustParse(&c)
 
-	workQueue := make(chan string)
-	finished := make(chan bool)
-
 	if c.ListPatterns {
 		helpers.ListPatterns()
 		return
@@ -143,19 +144,19 @@ func main() {
 	}
 
 	if noColor {
-		log.SetPrefix("fatt: ")
+		log.SetPrefix("fatt:")
 		log.SetFlags(0)
 	} else {
-		log.SetPrefix(fmt.Sprintf("%s%sfatt%s: ", red, bold, end))
+		log.SetPrefix(fmt.Sprintf("%s%sfatt%s:", red, bold, end))
 		log.SetFlags(0)
 	}
 
-	if c.Url != "" {
-		scanUrl(c.Url)
-		return
-	}
+	workQueue := make(chan string)
+	finished := make(chan bool)
 
-	if c.File != "" {
+	if c.Url != "" {
+		go scanUrl(c.Url, workQueue)
+	} else if c.File != "" {
 		go readFile(c.File, workQueue)
 	} else {
 		stat, _ := os.Stdin.Stat()

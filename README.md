@@ -86,7 +86,6 @@ Patterns added:
   - FacebookPageUrl: matches a facebook page URL
   - HostHeader: matches HTTP Host header
   - AzureStorageKey: matches Azure storage access keys for a storage account
-  - IbmCloudIamSecret: matches an IBM Cloud IAM secret
 
 Help Menu Options:
 	- -q|--quiet: less verbose output
