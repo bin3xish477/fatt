@@ -32,6 +32,7 @@ var (
 	noColor           bool
 	totalStringsFound int
 	quiet             bool
+	excludes          []string
 
 	// Errors
 	FileError      = errors.New("unable to open file")
@@ -41,6 +42,9 @@ var (
 
 func search(data string) {
 	for patternName, pattern := range patterns.Patterns {
+		if helpers.StringInSlice(strings.ToLower(patternName), excludes) {
+			continue
+		}
 		re := regexp2.MustCompile(pattern, 0)
 		matches := helpers.FindAllString(re, data)
 		for _, match := range matches {
@@ -118,7 +122,6 @@ func main() {
 	start := time.Now()
 	c := models.Args{}
 	arg.MustParse(&c)
-
 	if c.ListPatterns {
 		helpers.ListPatterns()
 		return
@@ -149,6 +152,13 @@ func main() {
 	} else {
 		log.SetPrefix(fmt.Sprintf("%s%sfatt%s:", red, bold, end))
 		log.SetFlags(0)
+	}
+
+	if c.Exclude != "" {
+		excludeSlice := strings.Split(strings.Trim(c.Exclude, " \n\t"), ",")
+		for _, str := range excludeSlice {
+			excludes = append(excludes, strings.ToLower(str))
+		}
 	}
 
 	workQueue := make(chan string)
