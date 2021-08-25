@@ -69,12 +69,12 @@ fatt-linux-amd64.tar.gz: OK
 fatt v1.1.0
 ---------------------------------------------------------------------------------------
 Patterns added:
-	- S3AccessLogEntry: matches AWS S3 log entry
-	- ApacheLogEntry: matches Apache log entry
-	- WindowsIISEntry: matches Windows IIS log entry
-	- SyslogEntryRfc3164: matches syslog log entry for RFC3164
-	- SyslogEntryRfc5424: matches syslog log entry for RFC5425
-  	- NginxLogEntry: matches an Nginx log entry
+	- AwsS3AccessLog: matches AWS S3 log entry
+	- ApacheLog: matches Apache log entry
+	- WindowsIIS: matches Windows IIS log entry 
+	- SyslogRfc3164: matches syslog log entry for RFC3164
+	- SyslogRfc5424: matches syslog log entry for RFC5425
+  	- NginxLog: matches an Nginx log entry
   	- CVE: matches a CVE Id
   	- CVSSv2: matches a CVSS v2 vector
   	- CVSSv3: matches a CVSS v3 vector
@@ -86,6 +86,10 @@ Patterns added:
   - FacebookPageUrl: matches a facebook page URL
   - HostHeader: matches HTTP Host header
   - AzureStorageKey: matches Azure storage access keys for a storage account
+  - YoutubeVideo: matches a Youtube video URL
+  - Log4jLog: matches a log4j log entry
+  - AwsElbAccessLog: matches an AWS ELB access log entry
+  - AkamaiLog: matches an Akamai log entry
 
 Help Menu Options:
 	- -q|--quiet: less verbose output

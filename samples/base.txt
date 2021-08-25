@@ -135,3 +135,17 @@ Host: google.com
 Authorization: Bearer flajadfADfaljgafdjlkajdwqpefrPRUPHFlafda==
 Authorization: Basic YWRtaW46YWRtaW4=
 Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+2014-08-29 14:53:58,948 DEBUG ajp-bio-172.16.2.157-8009-exec-111 PostgresIdsDAOImpl#getDatabaseConnection:822 - Attempting to JDBC connect to the database
+2014-08-29 14:53:58,949 DEBUG ajp-bio-172.16.2.157-8009-exec-111 PostgresIdsDAOImpl#getDatabaseConnection:833 - JDBC Driver is registered successfully
+2014-08-29 14:53:58,954 DEBUG ajp-bio-172.16.2.157-8009-exec-111 PostgresIdsDAOImpl#select:389 - Database connection successfully closed.
+2015-12-04T12:00:15.200494Z prod-web-elb 100.43.91.12:35206 10.26.0.113:80 0.000048 0.000485 0.00002 503 503 0 206 "GET http://www.cimri.com:80/dizustu-bilgisayar/en-ucuz-toshiba-satellite-c50-b-171-laptop-notebook-fiyatlari?10335842 HTTP/1.1" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)" - -
+1.1.1.1 - - [05/May/2015:13:23:13 +0000] "HEAD /www.arl.com/path/to/file.php HTTP/1.1" 200 265 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" "-" "-" "UNKNOWN"
+NAME="loop0" FSTYPE="LVM2_member" MOUNTPOINT="" SIZE="20971520000" TYPE="loop"
+NAME="sda" FSTYPE="" MOUNTPOINT="" SIZE="171798691840" TYPE="disk"
+NAME="sda1" FSTYPE="ext4" MOUNTPOINT="/boot" SIZE="1073741824" TYPE="part"
+NAME="sda2" FSTYPE="LVM2_member" MOUNTPOINT="" SIZE="170723901440" TYPE="part"
+NAME="sdb" FSTYPE="" MOUNTPOINT="" SIZE="32212254720" TYPE="disk"
+NAME="sdb1" FSTYPE="LVM2_member" MOUNTPOINT="" SIZE="32211206144" TYPE="part"
+NAME="sdc" FSTYPE="" MOUNTPOINT="" SIZE="53687091200" TYPE="disk"
+NAME="sdc1" FSTYPE="LVM2_member" MOUNTPOINT="" SIZE="53686042624" TYPE="part"
+NAME="sr0" FSTYPE="" MOUNTPOINT="" SIZE="1073741312" TYPE="rom"
