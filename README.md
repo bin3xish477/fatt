@@ -73,7 +73,7 @@ source fatt-Completion.sh
 ```
 fatt v1.1.0
 ---------------------------------------------------------------------------------------
-Patterns added:
+Patterns Added:
 	- AwsS3AccessLog: matches AWS S3 log entry
 	- ApacheLog: matches Apache log entry
 	- WindowsIIS: matches Windows IIS log entry 
@@ -96,7 +96,7 @@ Patterns added:
 	- AwsElbAccessLog: matches an AWS ELB access log entry
 	- AkamaiLog: matches an Akamai log entry
 
-Help Menu Options:
+Options Added:
 	- (-q | --quiet): less verbose output
 	- (-l | --list): list all available patterns and count	
 	- (-x | --exclude): exclude a specified pattern from search
