@@ -86,19 +86,18 @@ Patterns added:
 	- CVSSv3.1: matches a CVSS v3.1 vector
 	- PowerShellbase64Hidden: matches PowerShell base64 encoded and hidden command
 	- CmdExec: matches a cmd.exe non-interactive command-line
-  - HTMLComment: matches HTML comments
-  - TwitterHandle: matches a twitter handle
-  - FacebookPageUrl: matches a facebook page URL
-  - HostHeader: matches HTTP Host header
-  - AzureStorageKey: matches Azure storage access keys for a storage account
-  - YoutubeVideo: matches a Youtube video URL
-  - Log4jLog: matches a log4j log entry
-  - AwsElbAccessLog: matches an AWS ELB access log entry
-  - AkamaiLog: matches an Akamai log entry
+	- HTMLComment: matches HTML comments
+	- TwitterHandle: matches a twitter handle
+	- FacebookPageUrl: matches a facebook page URL
+	- HostHeader: matches HTTP Host header
+	- AzureStorageKey: matches Azure storage access keys for a storage account
+	- YoutubeVideo: matches a Youtube video URL
+	- Log4jLog: matches a log4j log entry
+	- AwsElbAccessLog: matches an AWS ELB access log entry
+	- AkamaiLog: matches an Akamai log entry
 
 Help Menu Options:
 	- -q|--quiet: less verbose output
-  - -l|--list: list all available patterns and count
-
-Capabilities Added:
-  ```
+	- -l|--list: list all available patterns and count	
+	- -x|--exclude: exclude a specified pattern from search
+```
