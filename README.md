@@ -97,7 +97,7 @@ Patterns added:
 	- AkamaiLog: matches an Akamai log entry
 
 Help Menu Options:
-	- -q|--quiet: less verbose output
-	- -l|--list: list all available patterns and count	
-	- -x|--exclude: exclude a specified pattern from search
+	- (-q | --quiet): less verbose output
+	- (-l | --list): list all available patterns and count	
+	- (-x | --exclude): exclude a specified pattern from search
 ```
