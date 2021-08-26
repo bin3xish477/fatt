@@ -100,4 +100,6 @@ Options Added:
 	- (-q | --quiet): less verbose output
 	- (-l | --list): list all available patterns and count	
 	- (-x | --exclude): exclude a specified pattern from search
+Misc:
+	- Added autotab Bash completion script
 ```
