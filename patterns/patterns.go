@@ -39,7 +39,7 @@ var Patterns = map[string]string{
 	`AzureStorageKey`:        `AccountKey=[a-zA-Z0-9+\/=]{88}`,
 	`WapBssid`:               `([0-9A-F]{2}([:-]|$)){6}`,
 	`WindowsVersion`:         `(Windows (7|8(\.1)?|3(\.1|\.0)|10|ME|XP|Vista|95|98|2000|1\.0[1-4]|2\.(03|1[0|1])))$`,
-	`EnvironmentVariable`:    `^([A-Z]+=\w+)$`,
+	`EnvironmentVariable`:    `^[A-Z_]+=[\w\d]+\s?$`,
 	`NetworkShare`:           `^(\\)(\\[\w\.-_]+){2,}(\\?)$`,
 	`GitHubSecret`:           `github.*['|\"][0-9a-zA-Z]{35,40}['|\"]`,
 	`HerokuKeys`:             `heroku.*[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}`,
@@ -75,4 +75,6 @@ var Patterns = map[string]string{
 	`Log4jLog`:               `(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3}) (\S*) (\S*) (\S*):(\d*) - (.*)`,
 	`AwsElbAccessLog`:        `^(\S+)\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+([^"]+)\s+\S+\s+\S+\s+"([^"]+)\s+HTTP\/\d.\d"\s+"([^"]+)"\s+-\s+-$`,
 	`AkamaiLog`:              `([\d\.]+)\s([\w\-]+)\s([\w\-]+)\s\[(\d+\/\w+\/\d+\:\d+\:\d+\:\d+\s\+\d+)\]\s"(.+?)"\s([\d\-]+)\s([\d\-]+)\s"(.+?)"\s"(.+?)"\s"(.+?)"\s"(.+?)"\s"(.+?)"`,
+	`EthereumAddress`:        `^0x([a-zA-Z0-9]{40})$`,
+	`PgpFingerPrint`:         `^(([a-fA-F0-9]{4}\ ){9}[a-fA-F0-9]{4})$`,
 }

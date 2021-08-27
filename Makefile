@@ -1,5 +1,3 @@
-run:
-	go run cmd/fatt/main.go -f samples/base.txt
 windows:
 	GOOS=windows GOARCH=amd64 go build -o ./bin/fatt.exe ./cmd/fatt/*
 windows-release:
