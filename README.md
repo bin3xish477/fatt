@@ -95,6 +95,12 @@ Patterns Added:
 	- Log4jLog: matches a log4j log entry
 	- AwsElbAccessLog: matches an AWS ELB access log entry
 	- AkamaiLog: matches an Akamai log entry
+	- NameSpace: matches a namespace definition
+	- SePrivilege: matches an Windows SE privilege definition
+	- OID: matches an Object Identifier (OID)
+	- UserAgent: matches generic User Agent string
+	- SQLQuery: matches a SQL query of the form (SELECT ... FROM ... WHERE ...)
+	- Exabeam: I also added a bunch of regular expressions matching data sources from Exabeam
 
 Options Added:
 	- (-q | --quiet): less verbose output

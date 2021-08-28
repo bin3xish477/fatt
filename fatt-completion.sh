@@ -11,4 +11,4 @@ _fatt_completions() {
   COMPREPLY+=("--exclude")
 }
 
-complete -F _fatt_completions fatt
+complete -f -F _fatt_completions -o filenames fatt
