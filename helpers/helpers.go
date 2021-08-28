@@ -3,6 +3,7 @@ package helpers
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/binexisHATT/fatt/patterns"
 	"github.com/dlclark/regexp2"
@@ -37,11 +38,28 @@ func ListPatterns() {
 	table.Render()
 }
 
+// StringInSlice returns true if `str` is in string slice `slice`
 func StringInSlice(str string, slice []string) bool {
+	// convert string slice to lowercase
+	var temp []string
 	for _, s := range slice {
+		temp = append(temp, strings.ToLower(s))
+	}
+
+	for _, s := range temp {
 		if s == str {
 			return true
 		}
 	}
 	return false
+}
+
+// FileExists returns true is `filename` exists and is not a directory
+// returns false otherwise
+func FileExists(filename string) bool {
+	info, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return !info.IsDir()
 }

@@ -122,6 +122,7 @@ func main() {
 	start := time.Now()
 	c := models.Args{}
 	arg.MustParse(&c)
+
 	if c.ListPatterns {
 		helpers.ListPatterns()
 		return
@@ -155,9 +156,21 @@ func main() {
 	}
 
 	if c.Exclude != "" {
-		excludeSlice := strings.Split(strings.Trim(c.Exclude, " \n\t"), ",")
-		for _, str := range excludeSlice {
-			excludes = append(excludes, strings.ToLower(str))
+
+		if helpers.FileExists(c.Exclude) {
+			f, err := os.Open(c.Exclude)
+			if err != nil {
+				log.Printf("unable to read file: %s...%sfailure%s", c.Exclude, red, end)
+			}
+			scanner := bufio.NewScanner(f)
+			for scanner.Scan() {
+				excludes = append(excludes, strings.Trim(scanner.Text(), " \n\t"))
+			}
+		} else {
+			excludeSlice := strings.Split(strings.Trim(c.Exclude, " \n\t"), ",")
+			for _, str := range excludeSlice {
+				excludes = append(excludes, strings.ToLower(str))
+			}
 		}
 	}
 

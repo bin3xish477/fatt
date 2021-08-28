@@ -4,17 +4,19 @@ fatt (Find All The Things) is a tool written in Go that'll find common strings i
 
 https://user-images.githubusercontent.com/44281620/130001712-ebf962c6-fd7a-4fe0-94b8-b7cb354ada21.mp4
 
-### Usage
+### Usage Examples
 ```bash
 ➤ cat /path/to/file.txt | fatt --workers 25 --outfile results.txt
 
 ➤ fatt --file /path/to/file.txt --workers 30 --outfile
 
 ➤ fatt -u http://someurl.com -o results.txt -n
+
+➤ fatt -f /path/to/file.txt -x 'VariableDeclaration,HTML' -q
 ```
 ### Help Menu
 ```
-Usage: main [--file FILE] [--url URL] [--outfile OUTFILE] [--workers WORKERS] [--nocolor]
+Usage: main [--file FILE] [--url URL] [--outfile OUTFILE] [--workers WORKERS] [--nocolor] [--quiet] [--list] [--exclude EXCLUDE]
 
 Options:
   --file FILE, -f FILE   file to scan
@@ -24,11 +26,15 @@ Options:
   --workers WORKERS, -w WORKERS
                          number of threads for scanning [default: 20]
   --nocolor, -n          turn off color output
+  --quiet, -q            make output less verbose
+  --list, -l             list all pattern names
+  --exclude EXCLUDE, -x EXCLUDE
+                         exclude a specific pattern from search (could specify a file or as comma-seperated values
   --help, -h             display this help and exit
 ```
 
 ### Installation
-#### With Go Installed (Go v1.17 or newer)
+#### With Go Installed (Go v1.16 or newer)
 ```
 ➤ go get -u -v github.com/binexisHATT/fatt/cmd/fatt
 ➤ fatt --help
@@ -48,8 +54,8 @@ Options:
 4. Extract the archive with the tar command to obtain binary
 
 # Example for Linux (amd64):
-➤ wget https://github.com/binexisHATT/fatt/releases/download/1.0.0/fatt-linux-amd64.tar.gz
-➤ wget https://github.com/binexisHATT/fatt/releases/download/1.0.0/fatt-linux-amd64.tar.gz.sha256sum
+➤ wget https://github.com/binexisHATT/fatt/releases/download/1.1.0/fatt-linux-amd64.tar.gz
+➤ wget https://github.com/binexisHATT/fatt/releases/download/1.1.0/fatt-linux-amd64.tar.gz.sha256sum
 
 # Verify SHA256 Hash
 ➤ sha256sum --check fatt-linux-amd64.tar.gz.sha256sum
@@ -100,7 +106,7 @@ Patterns Added:
 	- OID: matches an Object Identifier (OID)
 	- UserAgent: matches generic User Agent string
 	- SQLQuery: matches a SQL query of the form (SELECT ... FROM ... WHERE ...)
-	- Exabeam: I also added a bunch of regular expressions matching data sources from Exabeam
+	- Exabeam: I also added a bunch of regular expressions matching data sources from Exabeam (Thanks Marc Capellupo!)
 
 Options Added:
 	- (-q | --quiet): less verbose output
