@@ -34,6 +34,14 @@ Options:
 ```
 
 ### Installation
+
+#### Run with Docker
+```
+➤ git clone https://github.com/binexisHATT/fatt.git
+➤ docker build -t fatt .
+➤ docker run --rm --name fatt fatt -h
+```
+
 #### With Go Installed (Go v1.16 or newer)
 ```
 ➤ go get -u -v github.com/binexisHATT/fatt/cmd/fatt
@@ -106,12 +114,13 @@ Patterns Added:
 	- OID: matches an Object Identifier (OID)
 	- UserAgent: matches generic User Agent string
 	- SQLQuery: matches a SQL query of the form (SELECT ... FROM ... WHERE ...)
-	- Exabeam: I also added a bunch of regular expressions matching data sources from Exabeam (Thanks Marc Capellupo!)
 
 Options Added:
 	- (-q | --quiet): less verbose output
 	- (-l | --list): list all available patterns and count	
 	- (-x | --exclude): exclude a specified pattern from search
+
 Misc:
 	- Added autotab Bash completion script
+	- Added a Dockerfile
 ```
