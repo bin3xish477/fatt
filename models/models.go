@@ -9,4 +9,5 @@ type Args struct {
 	Quiet        bool   `help:"make output less verbose" arg:"-q,--quiet"`
 	ListPatterns bool   `help:"list all pattern names" arg:"-l,--list"`
 	Exclude      string `help:"exclude a specific pattern from search (could specify a file or as comma-seperated values" arg:"-x,--exclude"`
+	Version      bool   `help:"show version info" arg:"-v,--version"`
 }

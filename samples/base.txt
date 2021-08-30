@@ -156,3 +156,33 @@ FA0536C58CEBB95113EF405A4AB59C001B091337
 FA05 36C5 8CEB B951 13EF 405A 4AB5 9C00 1B09 1337
 2.16.840.1.113883.3.3190.100
 SELECT * FROM users WHERE name = "1337"
+WordPress 5.4.2
+WordPress/4.4.4
+WordPress v5.66
+Drupal 7.42
+Drupal/8.0
+Joomla! 1.5.26
+Joomla!/2.2
+Joomla v3.0
+Magento/2.3
+Magento 2.3.4
+Magento v3.33
+Umbraco 1.1.1
+Umbraco v7.15.7
+Umbraco/7.15
+Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/69.0.3497.105 Mobile/15E148 Safari/605.1
+Mozilla/5.0 (X11; CrOS x86_64 8172.45.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.64 Safari/537.36
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0.1
+image.png
+home.jpg
+funny.gif
+cat.jpeg
+moon.bmp
+Server: Windows IIS 10
+id=1041041234
+row=101
+file=index.html
+path=/contact.php
+exec=hostname
+cmd=ping 127.0.0.1
+redirect=http://domain.com

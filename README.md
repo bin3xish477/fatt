@@ -93,10 +93,10 @@ Patterns Added:
 	- WindowsIIS: matches Windows IIS log entry 
 	- SyslogRfc3164: matches syslog log entry for RFC3164
 	- SyslogRfc5424: matches syslog log entry for RFC5425
-  	- NginxLog: matches an Nginx log entry
-  	- CVE: matches a CVE Id
-  	- CVSSv2: matches a CVSS v2 vector
-  	- CVSSv3: matches a CVSS v3 vector
+	- NginxLog: matches an Nginx log entry
+	- CVE: matches a CVE Id
+	- CVSSv2: matches a CVSS v2 vector
+	- CVSSv3: matches a CVSS v3 vector
 	- CVSSv3.1: matches a CVSS v3.1 vector
 	- PowerShellbase64Hidden: matches PowerShell base64 encoded and hidden command
 	- CmdExec: matches a cmd.exe non-interactive command-line
@@ -111,9 +111,17 @@ Patterns Added:
 	- AkamaiLog: matches an Akamai log entry
 	- NameSpace: matches a namespace definition
 	- SePrivilege: matches an Windows SE privilege definition
-	- OID: matches an Object Identifier (OID)
 	- UserAgent: matches generic User Agent string
 	- SQLQuery: matches a SQL query of the form (SELECT ... FROM ... WHERE ...)
+	- WordPressVersion: matches WordPress version
+	- DrupalVersion: matches Drupal version
+	- JoomlaVersion: matches Joomla version
+	- MagentoVersion: matches Magento version
+	- UmbracoVersion: matches Umbraco version
+	- ImageFile: matches valid image file name
+	- SQLiVars: matches potential SQL Injection variables
+	- RCEVars: matches potential Remote Code Execution variables
+	- IDORVars: matches potential Insecure Direct Object Reference variables
 
 Options Added:
 	- (-q | --quiet): less verbose output

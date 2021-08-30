@@ -18,6 +18,8 @@ import (
 	"github.com/dlclark/regexp2"
 )
 
+const version = "v1.1.0"
+
 const (
 	red    = "\u001b[91m"
 	green  = "\u001b[32m"
@@ -153,6 +155,11 @@ func main() {
 	} else {
 		log.SetPrefix(fmt.Sprintf("%s%sfatt%s:", red, bold, end))
 		log.SetFlags(0)
+	}
+
+	if c.Version {
+		log.Printf(" %s\n", version)
+		return
 	}
 
 	if c.Exclude != "" {

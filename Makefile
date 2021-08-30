@@ -25,6 +25,8 @@ linux-release:
 	tar -czvf fatt-linux-386.tar.gz ./fatt ./README.md
 	sha256sum fatt-linux-386.tar.gz > fatt-linux-386.tar.gz.sha256sum
 
+releases: linux-release windows-release darwin-release
+
 clean:
 	@if [ -f fatt ]; then rm fatt; fi
 	@if [ -f fatt.exe ]; then rm fatt.exe; fi
