@@ -11,4 +11,4 @@ RUN cp /fatt/fatt /usr/local/bin
 ENTRYPOINT [ "fatt" ]
 
 # Usage:
-# > docker run --m --name fatt [ARGS]
+# $ docker run --m --name fatt fatt [ARGS]
