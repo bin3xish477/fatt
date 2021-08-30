@@ -1,10 +1,6 @@
 # fatt
-<<<<<<< HEAD
 
-fatt (Find All The Things) is a tool written in Go that'll find common strings in a specified file or HTTP response. If you have any regular expressions that aren't included, please make a pull request containing the regular expression and I'll include it into the tools current collection.
-=======
 fatt (Find All The Things) is a tool written in Go that'll find common strings in a specified file or HTTP response. If you have any regular expressions that aren't included, please make a pull request containing the regular expression and I'll include it into the tools current collection. I've already began working on **fatt v1.1.0** which will include additional patterns, options, and capabilities.
->>>>>>> main
 
 https://user-images.githubusercontent.com/44281620/130001712-ebf962c6-fd7a-4fe0-94b8-b7cb354ada21.mp4
 
@@ -15,10 +11,6 @@ https://user-images.githubusercontent.com/44281620/130001712-ebf962c6-fd7a-4fe0-
 ➤ fatt --file /path/to/file.txt --workers 30 --outfile
 
 ➤ fatt -u http://someurl.com -o results.txt -n
-<<<<<<< HEAD
-=======
-```
->>>>>>> main
 
 ➤ fatt -f /path/to/file.txt -x 'VariableDeclaration,HTML' -q
 ```
@@ -86,7 +78,6 @@ fatt-linux-amd64.tar.gz: OK
 ➤ sudo mv ./fatt /usr/local/bin/
 ```
 
-<<<<<<< HEAD
 ### Add Autotab Completion for fatt
 ```
 source fatt-Completion.sh
@@ -141,5 +132,3 @@ Misc:
 	- Added autotab Bash completion script
 	- Added a Dockerfile
 ```
-=======
->>>>>>> main
