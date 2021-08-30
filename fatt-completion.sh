@@ -9,6 +9,7 @@ _fatt_completions() {
   COMPREPLY+=("--quiet")
   COMPREPLY+=("--list")
   COMPREPLY+=("--exclude")
+  COMPREPLY+=("--version")
 }
 
 complete -f -F _fatt_completions -o filenames fatt
