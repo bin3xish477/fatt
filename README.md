@@ -85,6 +85,32 @@ source fatt-Completion.sh
 
 ### Change Log
 ```
+fatt v1.2.0
+---------------------------------------------------------------------------------------
+Patterns Added:
+	- Web Application Firewall Detections
+	-	- BigIPWaf
+	-	- 360Waf
+	-	- aeSecureWaf
+	-	- AirlockWaf
+	-	- AkamaiGHostWaf
+	-	- AlertLogicWaf
+	-	- AliYunDunWaf
+	-	- AnquanbaoWaf
+	-	- AnYuWaf
+	-	- ApacheGenericWaf
+	-	- ArmorDefenseWaf
+	-	- F5AsmWaf
+	-	- AspNetGenericWaf
+	-	- ATSWebProxyWaf
+	-	- AwsWaf
+	-	- BaiduWaf
+	-	- BarikodeWaf
+	-	- BarracudaWaf
+	-	- BekchyWaf
+	-	- BinarySEC
+	-	- BitNinjaWaf
+
 fatt v1.1.0
 ---------------------------------------------------------------------------------------
 Patterns Added:
