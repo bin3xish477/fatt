@@ -203,7 +203,7 @@ func main() {
 				close(workQueue)
 			}()
 		} else {
-			log.Fatalln("--file or data from stdin must be specified")
+			log.Fatalln(" --file or data from stdin must be specified")
 		}
 	}
 

@@ -6,9 +6,9 @@ https://user-images.githubusercontent.com/44281620/131411335-21117104-b2cf-4792-
 
 ### Usage Examples
 ```bash
-➤ cat /path/to/file.txt | fatt --workers 25 --outfile results.txt
+➤ cat /path/to/file.txt | fatt -->workers 25 -->outfile results.txt
 
-➤ fatt --file /path/to/file.txt --workers 30 --outfile
+➤ fatt -->file /path/to/file.txt -->workers 30 -->outfile
 
 ➤ fatt -u http://someurl.com -o results.txt -n
 
@@ -16,21 +16,21 @@ https://user-images.githubusercontent.com/44281620/131411335-21117104-b2cf-4792-
 ```
 ### Help Menu
 ```
-Usage: main [--file FILE] [--url URL] [--outfile OUTFILE] [--workers WORKERS] [--nocolor] [--quiet] [--list] [--exclude EXCLUDE]
+Usage: main [-->file FILE] [-->url URL] [-->outfile OUTFILE] [-->workers WORKERS] [-->nocolor] [-->quiet] [-->list] [-->exclude EXCLUDE]
 
 Options:
-  --file FILE, -f FILE   file to scan
-  --url URL, -u URL      url to scan
-  --outfile OUTFILE, -o OUTFILE
+  -->file FILE, -f FILE   file to scan
+  -->url URL, -u URL      url to scan
+  -->outfile OUTFILE, -o OUTFILE
                          name of directory to save results to
-  --workers WORKERS, -w WORKERS
+  -->workers WORKERS, -w WORKERS
                          number of threads for scanning [default: 20]
-  --nocolor, -n          turn off color output
-  --quiet, -q            make output less verbose
-  --list, -l             list all pattern names
-  --exclude EXCLUDE, -x EXCLUDE
+  -->nocolor, -n          turn off color output
+  -->quiet, -q            make output less verbose
+  -->list, -l             list all pattern names
+  -->exclude EXCLUDE, -x EXCLUDE
                          exclude a specific pattern from search (could specify a file or as comma-seperated values
-  --help, -h             display this help and exit
+  -->help, -h             display this help and exit
 ```
 
 ### Installation
@@ -39,13 +39,13 @@ Options:
 ```
 ➤ git clone https://github.com/binexisHATT/fatt.git
 ➤ docker build -t fatt .
-➤ docker run --rm --name fatt fatt -h
+➤ docker run -->rm -->name fatt fatt -h
 ```
 
 #### With Go Installed (Go v1.16 or newer)
 ```
 ➤ go get -u -v github.com/binexisHATT/fatt/cmd/fatt
-➤ fatt --help
+➤ fatt -->help
 ```
 #### From Source (Go Must Be Installed)
 ```
@@ -58,7 +58,7 @@ Options:
 ```
 1. Go to fatt's release page: https://github.com/binexisHATT/fatt/releases
 2. Download the .tar.gz archive for the target OS/Architecture and the .sha256sum file for verification
-3. Run sha256sum --check to verify download hash
+3. Run sha256sum -->check to verify download hash
 4. Extract the archive with the tar command to obtain binary
 
 # Example for Linux (amd64):
@@ -66,7 +66,7 @@ Options:
 ➤ wget https://github.com/binexisHATT/fatt/releases/download/1.1.0/fatt-linux-amd64.tar.gz.sha256sum
 
 # Verify SHA256 Hash
-➤ sha256sum --check fatt-linux-amd64.tar.gz.sha256sum
+➤ sha256sum -->check fatt-linux-amd64.tar.gz.sha256sum
 # Output if hashes matched:
 fatt-linux-amd64.tar.gz: OK
 
@@ -86,33 +86,60 @@ source fatt-Completion.sh
 ### Change Log
 ```
 fatt v1.2.0
----------------------------------------------------------------------------------------
+-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-
 Patterns Added:
-	- Web Application Firewall Detections
-	-	- BigIPWaf
-	-	- 360Waf
-	-	- aeSecureWaf
-	-	- AirlockWaf
-	-	- AkamaiGHostWaf
-	-	- AlertLogicWaf
-	-	- AliYunDunWaf
-	-	- AnquanbaoWaf
-	-	- AnYuWaf
-	-	- ApacheGenericWaf
-	-	- ArmorDefenseWaf
-	-	- F5AsmWaf
-	-	- AspNetGenericWaf
-	-	- ATSWebProxyWaf
-	-	- AwsWaf
-	-	- BaiduWaf
-	-	- BarikodeWaf
-	-	- BarracudaWaf
-	-	- BekchyWaf
-	-	- BinarySEC
-	-	- BitNinjaWaf
+	- Web Application Firewall Detections:
+	--> BigIPWAF
+	--> 360WAF
+	--> aeSecureWAF
+	--> AirlockWAF
+	--> AkamaiGHostWAF
+	--> AlertLogicWAF
+	--> AliYunDunWAF
+	--> AnquanbaoWAF
+	--> AnYuWAF
+	--> ApacheGenericWAF
+	--> ArmorDefenseWAF
+	--> F5AsmWAF
+	--> AspNetGenericWAF
+	--> ATSWebProxyWAF
+	--> AwsWAF
+	--> BaiduWAF
+	--> BarikodeWAF
+	--> BarracudaWAF
+	--> BekchyWAF
+	--> BinarySEC
+	--> BitNinjaWAF
+	--> ChuangyuWAF
+	--> CloudFlareWAF
+	--> CloudFrontWAF
+	--> CodeIgniterWAF
+	--> ComodoWAF
+	--> ConfigServerWAF
+	--> DenyAllWAF
+	--> DiDiYunWAF
+	- FTPBanner: matches FTP server banners
+	- Cookies:
+	--> CloudFlareCookie
+	--> AwsAlbCookie
+	--> AwsElbCookie
+	--> PHPCookie
+	--> MicrosoftIISCookie
+	--> AdobeColdFusionCookie
+	--> ArraySSLCookie
+	--> ApacheCookie
+	--> ApacheJServCookie
+	--> ATGDynamoCookie
+	--> BugzillaCookie
+	--> BlueCoatCookie
+	--> CakePHPCookie
+	--> CiscoAsaVPNCookie
+	--> AtlanssianCookie
+	--> GitLabCookie
+
 
 fatt v1.1.0
----------------------------------------------------------------------------------------
+-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-
 Patterns Added:
 	- AwsS3AccessLog: matches AWS S3 log entry
 	- ApacheLog: matches Apache log entry
@@ -150,9 +177,9 @@ Patterns Added:
 	- IDORVars: matches potential Insecure Direct Object Reference variables
 
 Options Added:
-	- (-q | --quiet): less verbose output
-	- (-l | --list): list all available patterns and count	
-	- (-x | --exclude): exclude a specified pattern from search
+	- (-q | -->quiet): less verbose output
+	- (-l | -->list): list all available patterns and count	
+	- (-x | -->exclude): exclude a specified pattern from search
 
 Misc:
 	- Added autotab Bash completion script
