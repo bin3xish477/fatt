@@ -86,7 +86,7 @@ source fatt-Completion.sh
 ### Change Log
 ```
 fatt v1.2.0
--->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-
+-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->
 Patterns Added:
 	- Web Application Firewall Detections:
 	--> BigIPWAF
@@ -139,7 +139,7 @@ Patterns Added:
 
 
 fatt v1.1.0
--->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-
+-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->
 Patterns Added:
 	- AwsS3AccessLog: matches AWS S3 log entry
 	- ApacheLog: matches Apache log entry
@@ -177,9 +177,9 @@ Patterns Added:
 	- IDORVars: matches potential Insecure Direct Object Reference variables
 
 Options Added:
-	- (-q | -->quiet): less verbose output
-	- (-l | -->list): list all available patterns and count	
-	- (-x | -->exclude): exclude a specified pattern from search
+	- (-q | --quiet): less verbose output
+	- (-l | --list): list all available patterns and count	
+	- (-x | --exclude): exclude a specified pattern from search
 
 Misc:
 	- Added autotab Bash completion script
