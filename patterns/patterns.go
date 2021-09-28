@@ -143,4 +143,5 @@ var Patterns = map[string]string{
 	`CiscoAsaVPNCookie`:      `webvpn(?:c|context|_portal|Lang|login|SharePoint)?=.*\s?`,
 	`AtlanssianCookie`:       `FESESSIONID=.*\s?`,
 	`GitLabCookie`:           `_gitlab_session=.*\s?`,
+	`ZoomMeetingLink`:        `https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+/[a-z]/[\w\d]+`,
 }

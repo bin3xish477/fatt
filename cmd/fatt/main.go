@@ -75,7 +75,7 @@ func search(data string) {
 
 func scanUrl(url string, queue chan<- string) {
 	client := http.Client{
-		Timeout: time.Second * 5,
+		Timeout: time.Second * 30,
 	}
 	resp, err := client.Get(url)
 	if err != nil {
